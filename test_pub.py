@@ -54,7 +54,7 @@ if __name__ == '__main__':
         pub_client.connect('18.217.227.236', 1883)      #connect to broker [I3 broker address and host number are hard coded here.]
     
     except Exception as e:
-        print "Exception" + str(e)
+        print ("Exception" + str(e))
 
     #pub_client.subscribe(topic)
     #pub_client.loop_start()
