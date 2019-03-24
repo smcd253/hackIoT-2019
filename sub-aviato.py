@@ -21,7 +21,7 @@ def on_message(client, userdata, msg):
 
     # img = PIL.Image.open(file_like)
     # img.show()
-    image_result = open('lena-out-decode.jpg', 'wb')
+    image_result = open('camera-out.jpg', 'wb')
     image_64_decode = base64.decodestring(msg.payload)
     image_result.write(image_64_decode)
     image_result.close()
