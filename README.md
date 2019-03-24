@@ -5,3 +5,5 @@
 Topic: Aviato-rawImageData
 pwd: y1ycmu
 
+piCamera image data to HTTP
+https://helloraspberrypi.blogspot.com/2015/05/python-socket-server-to-send-camera_12.html
