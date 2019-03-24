@@ -65,7 +65,7 @@ svc_model.fit(image_data, target_data)
 # we will use the joblib module to persist the model
 # into files. This means that the next time we need to
 # predict, we don't need to train the model again
-save_directory = os.path.join(current_dir, 'models/svc/')
+save_directory = os.path.join(current_dir, 'models/')
 if not os.path.exists(save_directory):
     os.makedirs(save_directory)
 joblib.dump(svc_model, save_directory+'/svc.pkl')

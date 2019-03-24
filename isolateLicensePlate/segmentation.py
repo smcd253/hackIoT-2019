@@ -13,7 +13,7 @@ import cca2
 # license plate. We'll fix this later
 
 # The invert was done so as to convert the black pixel to white pixel and vice versa
-license_plate = np.invert(cca2.plate_like_objects[1])
+license_plate = np.invert(cca2.plate_like_objects[0])
 
 labelled_plate = measure.label(license_plate)
 
@@ -48,6 +48,5 @@ for regions in regionprops(labelled_plate):
 
         # this is just to keep track of the arrangement of the characters
         column_list.append(x0)
-
-#plt.show()
 plt.savefig('plate.jpg')
+plt.show()

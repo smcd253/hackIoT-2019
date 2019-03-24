@@ -4,7 +4,7 @@ from skimage.io import imread
 from skimage.filters import threshold_otsu
 import matplotlib.pyplot as plt
 
-car_image = imread("car-test.jpg", as_gray=True)
+car_image = imread("camera-out.jpg", as_gray=True)
 # it should be a 2 dimensional array
 print(car_image.shape)
 
