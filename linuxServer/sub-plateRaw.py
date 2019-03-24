@@ -49,10 +49,10 @@ def test_sub(logfilename=None):
 
     #TODO: PLEASE ENTER THE ACCOUND/PASSWORD and TOPIC FROM THE I3 MARKETPLACE	
 
-    account = 'ayush96'
+    account = 'SpencerMcD'
     #topic = 'JMC_AH1MaTemp.'
-    topic = 'Aviato-rawImageData'
-    pw = '0tqkf0'
+    topic = ['Aviato-rawImageData', 'Aviato-processedImageData']
+    pw = 'y1ycmu'
     
     sub_client = mqtt.Client(account)
     sub_client.on_connect = on_connect
@@ -60,7 +60,7 @@ def test_sub(logfilename=None):
     sub_client.username_pw_set(account, pw)
     sub_client.connect('18.217.227.236', 1883, 60) #connect to broker [I3 BROKER INFORMATION IS HARD CODED HERE]
 
-    sub_client.subscribe(topic)
+    sub_client.subscribe(topic[0])
     
     if not logfilename is None:
         logfile = open(logfilename, 'w')
