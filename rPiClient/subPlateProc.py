@@ -32,10 +32,10 @@ def test_sub(logfilename=None):
 
     #TODO: PLEASE ENTER THE ACCOUND/PASSWORD and TOPIC FROM THE I3 MARKETPLACE	
 
-    account = 'SpencerMcD'
+    account = 'ayush96'
     #topic = 'JMC_AH1MaTemp.'
     topic = 'Aviato-processedImageData'
-    pw = 'y1ycmu'
+    pw = '0tqkf0'
     
     sub_client = mqtt.Client(account)
     sub_client.on_connect = on_connect

@@ -9,6 +9,8 @@ import paho.mqtt.client as mqtt
 import time
 from StringIO import StringIO
 import base64
+import readchar
+
 
 def on_connect(client, userdata, flags, rc):
     """print out result code when connecting with the broker
@@ -50,12 +52,28 @@ if __name__ == '__main__':
     camera = PiCamera()
     camera.resolution = (256,256)
     stream = io.BytesIO()
-    camera.capture(stream,'jpeg')
-    stream.seek(0)
-    f = stream.read()
-    encoded_string = base64.b64encode(f)
+#    camera.capture(stream,'jpeg')
+#    stream.seek(0)
+#    f = stream.read()
+    print("Streaming images")
+    f = [None]*10
+    encoded = [None]*10
+    for n in range(10):
+        print("Capturing")
+	camera.capture(stream,'jpeg')
+	stream.seek(0)
+        f[n] = stream.read()
+        encoded[n] = base64.b64encode(f[n])
+        c = readchar.readchar()
 
-    print("encoded string = " + encoded_string)
+        if str(c)==' ':
+	    print("An action has occured")
+            encoded_string = encoded[0]
+	    break
+        else:
+	    print("No action has occured")
+
+    #print("encoded string = " + encoded_string)
 
     #print("img data = " + bytearray(scene_infile))
     #TODO: modify topic from email messagE
@@ -78,7 +96,7 @@ if __name__ == '__main__':
     #pub_client.loop_start()
 
     count = 0
-    while count < 100:
+    while count < 10000:
         count += 1
         pub_client.publish(topic[0], encoded_string.encode('utf-8'))
         time.sleep(2)
