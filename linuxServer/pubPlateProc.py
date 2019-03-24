@@ -6,7 +6,6 @@ import paho.mqtt.client as mqtt
 import time
 # from StringIO import StringIO
 import base64
-import segmentation
 
 
 def on_connect(client, userdata, flags, rc):

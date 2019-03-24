@@ -6,8 +6,9 @@ import paho.mqtt.client as mqtt
 import time
 import base64
 import PIL.Image
-import segmentation
-import pubPlateProc
+import io 
+from pynput.keyboard import Key, Controller
+import readchar  # using module keyboard
 
 logfile = None
 
@@ -18,18 +19,29 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     global logfile
-    
-    image_result = open('image-raw.jpg', 'wb')
-    image_64_decode = base64.decodestring(msg.payload)
-    image_result.write(image_64_decode)
-    image_result.close()
-    
-    # process image
-    segmentation
-    
-    # use unused variable^ but we can use this to generate the plate.jpg image,
-    # which we will now publish on the processedImageData channel
-    pubPlateProc
+
+    if (msg.payload):
+        # print(msg.payload)
+        image_result = open('image-raw.jpg', 'wb')
+        image_64_decode = base64.decodestring(msg.payload)
+        image_result.write(image_64_decode)
+        image_result.close()
+
+        print("msg received") 
+
+        keyboard = Controller()
+        keyboard.press('a')
+        # keyboard.release('a')
+        # process image
+        # segmentation
+
+        # use unused variable^ but we can use this to generate the plate.jpg image,
+        # which we will now publish on the processedImageData channel
+        # pubPlateProc
+        # except:
+        #     print("image-raw.jpg not available")
+    else:
+        print("msg empty")
     
 
 def test_sub(logfilename=None):   
@@ -52,11 +64,31 @@ def test_sub(logfilename=None):
     
     if not logfilename is None:
         logfile = open(logfilename, 'w')
-        
+ 
+    keyboard = Controller()
     rc = 0
-    while rc == 0:
-        rc = sub_client.loop()
-        time.sleep(1)
+    flag = 0
+    while flag == 0:
         
+        keyboard.press(' ')
+        print("waiting for msg")
+        rc = sub_client.loop()
+        c = readchar.readchar()
+        # capturedOutput = io.StringIO()          # Create StringIO object
+        # sys.stdout = capturedOutput                   #  and redirect stdout.
+        # sys.stdout = sys.__stdout__                   # Reset redirect.
+        # print ('Captured' + capturedOutput.getvalue())   # Now works as before.
+        # if capturedOutput.getvalue() == "msg received":
+        #     flag = 1
+
+        print("c = " + c)
+        if str(c)=='a':
+            flag = 1
+
+        time.sleep(1)
+
+    import segmentation
+    import pubPlateProc
+
 if __name__ == '__main__':
     test_sub('sub.log')
