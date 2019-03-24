@@ -4,6 +4,8 @@ test_sub.py is an example of a publisher subscribing to a topic
 
 import paho.mqtt.client as mqtt
 import time
+from StringIO import StringIO
+import base64
 
 def on_connect(client, userdata, flags, rc):
     """print out result code when connecting with the broker
@@ -40,11 +42,21 @@ def on_message(client1, userdata, message):
 
 if __name__ == '__main__':
 
+    # read raw image file
+    # scene_infile = open('pepper.raw','rb').read()
+    
+    with open("lena-256x256.jpg", "rb") as image:
+        f = image.read()
+        encoded_string = base64.b64encode(f)
+
+    print("encoded string = " + encoded_string)
+
+    #print("img data = " + bytearray(scene_infile))
     #TODO: modify topic from email messagE
     #TODO: PLEASE ENTER THE ACCOUND/PASSWORD FROM THE I3 MARKETPLACE	
-    account = 'admin'
-    topic = ['test_i3']
-    pw = 'yrjxn1'
+    account = 'SpencerMcD'
+    topic = ['Aviato-rawImageData']
+    pw = 'y1ycmu'
 
     try:
         pub_client = mqtt.Client(account)
@@ -62,8 +74,9 @@ if __name__ == '__main__':
     count = 0
     while count < 100:
         count += 1
-        pub_client.publish(topic[0], 'Hello World')
+        pub_client.publish(topic[0], encoded_string.encode('utf-8'))
         time.sleep(2)
 
     pub_client.disconnect()
+    scene_infile.close()
 
