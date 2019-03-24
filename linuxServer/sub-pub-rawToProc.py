@@ -98,15 +98,15 @@ def test_sub(logfilename=None):
     if not logfilename is None:
         logfile = open(logfilename, 'w')
  
-    # keyboard = Controller()
+    keyboard = Controller()
     rc = 0
-    # flag = 0
-    # while flag == 0:
+    flag = 0
+    while flag == 0:
         
-        # keyboard.press(' ')
-        # print("waiting for msg")
-    rc = sub_client.loop()
-        # c = readchar.readchar()
+        keyboard.press(' ')
+        print("waiting for msg")
+        rc = sub_client.loop()
+        c = readchar.readchar()
         # capturedOutput = io.StringIO()          # Create StringIO object
         # sys.stdout = capturedOutput                   #  and redirect stdout.
         # sys.stdout = sys.__stdout__                   # Reset redirect.
@@ -114,11 +114,11 @@ def test_sub(logfilename=None):
         # if capturedOutput.getvalue() == "msg received":
         #     flag = 1
 
-        # print("c = " + c)
-        # if str(c)=='a':
-        #     flag = 1
+        print("c = " + c)
+        if str(c)=='a':
+            flag = 1
 
-        # time.sleep(1)
+        time.sleep(1)
     
 
     import segmentation

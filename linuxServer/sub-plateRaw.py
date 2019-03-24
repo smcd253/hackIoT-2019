@@ -49,10 +49,10 @@ def test_sub(logfilename=None):
 
     #TODO: PLEASE ENTER THE ACCOUND/PASSWORD and TOPIC FROM THE I3 MARKETPLACE	
 
-    account = 'SpencerMcD'
+    account = 'ayush96'
     #topic = 'JMC_AH1MaTemp.'
     topic = ['Aviato-rawImageData', 'Aviato-processedImageData']
-    pw = 'y1ycmu'
+    pw = '0tqkf0'
     
     sub_client = mqtt.Client(account)
     sub_client.on_connect = on_connect
@@ -73,13 +73,8 @@ def test_sub(logfilename=None):
         keyboard.press(' ')
         print("waiting for msg")
         rc = sub_client.loop()
-        c = readchar.readchar()
-        # capturedOutput = io.StringIO()          # Create StringIO object
-        # sys.stdout = capturedOutput                   #  and redirect stdout.
-        # sys.stdout = sys.__stdout__                   # Reset redirect.
-        # print ('Captured' + capturedOutput.getvalue())   # Now works as before.
-        # if capturedOutput.getvalue() == "msg received":
-        #     flag = 1
+        c = readchar.readchar() 
+        # keyboard.release(' ')
 
         print("c = " + c)
         if str(c)=='a':
