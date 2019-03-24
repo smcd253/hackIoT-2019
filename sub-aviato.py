@@ -4,7 +4,6 @@ test_sub.py is an example of a subscriber to a topic
 
 import paho.mqtt.client as mqtt
 import time
-from StringIO import StringIO
 import base64
 import PIL.Image
 
